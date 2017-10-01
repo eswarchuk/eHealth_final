@@ -5,6 +5,7 @@
 var express  = require('express');
 var app      = express();
 var port     = process.env.PORT || 8080;
+var http = require ('http'); 
 var mongoose = require('mongoose');
 //var MongoClient = require('mongodb').MongoClient;
 var passport = require('passport');
