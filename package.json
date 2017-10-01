@@ -17,7 +17,7 @@
     "bcrypt-nodejs" : "latest" 		
   },
  "engines": {
-   "npm": "3.10.10" 
+   "npm": "3.10.10", 
    "node": "6.11.3"
 }
 
