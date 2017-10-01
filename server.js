@@ -14,7 +14,9 @@ var configDB = require('./config/database.js');
 
 // configuration ===============================================================
 //MongoClient.connect(configDB.url,function(err, db) {
-  mongoose.connect(configDB.url);
+  mongoose.connect(configDB.url, {
+  useMongoClient: true
+});
 }); // connect to our database
 
 require('./config/passport')(passport); // pass passport for configuration
