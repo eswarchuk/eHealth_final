@@ -28,7 +28,7 @@ module.exports = function(app, passport) {
 
 	app.get('/profileface', isLoggedIn, function(req, res) {
 		res.render('profileface.ejs', {
-			user : req.user
+			
 		});
 	});
 
