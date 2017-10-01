@@ -5,15 +5,16 @@
 var express  = require('express');
 var app      = express();
 var port     = process.env.PORT || 8080;
-var MongoClient = require('mongodb').MongoClient;
+var mongoose = require('mongoose');
+//var MongoClient = require('mongodb').MongoClient;
 var passport = require('passport');
 var flash    = require('connect-flash');
 
 var configDB = require('./config/database.js');
 
 // configuration ===============================================================
-MongoClient.connect(configDB.url,function(err, db) {
-  
+//MongoClient.connect(configDB.url,function(err, db) {
+  mongoose.connect(configDB.url);
 }); // connect to our database
 
 require('./config/passport')(passport); // pass passport for configuration
