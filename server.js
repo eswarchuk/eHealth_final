@@ -15,6 +15,7 @@ var flash    = require('connect-flash');
 var configDB = require('./config/database.js');
 
 // configuration ===============================================================
+mongoose.Promise = global.Promise
 mongoose.connect(configDB.url, options);
 var conn = mongoose.connection;             
  
