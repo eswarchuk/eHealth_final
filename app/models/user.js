@@ -1,9 +1,9 @@
 // load the things we need
-var mongodb = require('mongodb');
+var mongoClient = require('mongodb').mongoClient;
 var bcrypt   = require('bcrypt-nodejs');
 
 // define the schema for our user model
-var userSchema = mongodb.Schema({
+var userSchema = mongoClient.Schema({
 
     local            : {
         email        : String,
@@ -41,4 +41,4 @@ userSchema.methods.validPassword = function(password) {
 };
 
 // create the model for users and expose it to our app
-module.exports = mongodb.model('User', userSchema);
+module.exports = mongoClient.model('User', userSchema);
