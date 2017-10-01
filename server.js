@@ -6,24 +6,15 @@ var express  = require('express');
 var app      = express();
 var port     = process.env.PORT || 8080;
 var http 	= require ('http'); 
-var mongoose = require('mongoose');
-var options = { server: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 } }, 
-                replset: { socketOptions: { keepAlive: 300000, connectTimeoutMS : 30000 } } };   
+var mongoose = require('mongoose');  
 var passport = require('passport');
 var flash    = require('connect-flash');
 
 var configDB = require('./config/database.js');
 
 // configuration ===============================================================
-mongoose.Promise = global.Promise
-mongoose.connect(configDB.url, options);
-var conn = mongoose.connection;             
- 
-conn.on('error', console.error.bind(console, 'connection error:'));  
- 
-conn.once('open', function() {
-  // Wait for the database connection to establish, then start the app.                         
-});
+
+mongoose.connect(configDB.url, { useMongoClient: true, promiseLibrary: global.Promise });
 // connect to our database
 
 require('./config/passport')(passport); // pass passport for configuration
