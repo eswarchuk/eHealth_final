@@ -13,7 +13,7 @@ var configDB = require('./config/database.js');
 
 // configuration ===============================================================
 MongoClient.connect(configDB.url,function(err, db) {
-  db.close();
+  
 }); // connect to our database
 
 require('./config/passport')(passport); // pass passport for configuration
