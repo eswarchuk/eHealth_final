@@ -14,7 +14,7 @@ var configDB = require('./config/database.js');
 
 // configuration ===============================================================
 
-mongoose.connect(configDB.url)
+mongoose.connect(configDB.url);
 		 //{ useMongoClient: true, promiseLibrary: global.Promise });
 // connect to our database
 
