@@ -1,43 +1,42 @@
-// load all the things we need
+// load passport packages, userschema, auth
 var LocalStrategy    = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var TwitterStrategy  = require('passport-twitter').Strategy;
 var GoogleStrategy   = require('passport-google-oauth').OAuth2Strategy;
 
-// load up the user model
+// load user model
 var User       = require('../app/models/user');
 
-// load the auth variables
-var configAuth = require('./auth'); // use this one for testing
+// load auth 
+var configAuth = require('./auth'); // test
 
 module.exports = function(passport) {
 
-    // =========================================================================
+    
     // passport session setup ==================================================
-    // =========================================================================
-    // required for persistent login sessions
-    // passport needs ability to serialize and unserialize users out of session
+    // persistent login sessions
+    // serialize and deserialize users out of session
 
-    // used to serialize the user for the session
+    // serialize a user for the session
     passport.serializeUser(function(user, done) {
         done(null, user.id);
     });
 
-    // used to deserialize the user
+    // deserialize the user
     passport.deserializeUser(function(id, done) {
         User.findById(id, function(err, user) {
             done(err, user);
         });
     });
 
-    // =========================================================================
+    
     // LOCAL LOGIN =============================================================
-    // =========================================================================
+    
     passport.use('local-login', new LocalStrategy({
-        // by default, local strategy uses username and password, we will override with email
+        // override local strategy defaults username and password with email
         usernameField : 'email',
         passwordField : 'password',
-        passReqToCallback : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
+        passReqToCallback : true // check if a user is logged in or not
     },
     function(req, email, password, done) {
 
@@ -63,67 +62,11 @@ module.exports = function(passport) {
 
     }));
 
-    // =========================================================================
-    // LOCAL SIGNUP ============================================================
-    // =========================================================================
-    passport.use('local-signup', new LocalStrategy({
-        // by default, local strategy uses username and password, we will override with email
-        usernameField : 'email',
-        passwordField : 'password',
-        passReqToCallback : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
-    },
-    function(req, email, password, done) {
-
-        // asynchronous
-        process.nextTick(function() {
-
-            //  Whether we're signing up or connecting an account, we'll need
-            //  to know if the email address is in use.
-            User.findOne({'local.email': email}, function(err, existingUser) {
-
-                // if there are any errors, return the error
-                if (err)
-                    return done(err);
-
-                // check to see if there's already a user with that email
-                if (existingUser) 
-                    return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
-
-                //  If we're logged in, we're connecting a new local account.
-                if(req.user) {
-                    var user            = req.user;
-                    user.local.email    = email;
-                    user.local.password = user.generateHash(password);
-                    user.save(function(err) {
-                        if (err)
-                            throw err;
-                        return done(null, user);
-                    });
-                } 
-                //  We're not logged in, so we're creating a brand new user.
-                else {
-                    // create the user
-                    var newUser            = new User();
-
-                    newUser.local.email    = email;
-                    newUser.local.password = newUser.generateHash(password);
-
-                    newUser.save(function(err) {
-                        if (err)
-                            throw err;
-
-                        return done(null, newUser);
-                    });
-                }
-
-            });
-        });
-
-    }));
-
-    // =========================================================================
+    
+   
+   
     // FACEBOOK ================================================================
-    // =========================================================================
+   
     passport.use(new FacebookStrategy({
 
         clientID        : configAuth.facebookAuth.clientID,
@@ -197,9 +140,9 @@ module.exports = function(passport) {
 
     }));
 
-    // =========================================================================
+    
     // TWITTER =================================================================
-    // =========================================================================
+    
     passport.use(new TwitterStrategy({
 
         consumerKey     : configAuth.twitterAuth.consumerKey,
@@ -272,15 +215,15 @@ module.exports = function(passport) {
 
     }));
 
-    // =========================================================================
+    
     // GOOGLE ==================================================================
-    // =========================================================================
+    
     passport.use(new GoogleStrategy({
 
         clientID        : configAuth.googleAuth.clientID,
         clientSecret    : configAuth.googleAuth.clientSecret,
         callbackURL     : configAuth.googleAuth.callbackURL,
-        passReqToCallback : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
+        passReqToCallback : true // check if a user is logged in or not
 
     },
     function(req, token, refreshToken, profile, done) {
@@ -349,3 +292,58 @@ module.exports = function(passport) {
     }));
 
 };
+ // LOCAL SIGNUP ============================================================
+    
+    passport.use('local-signup', new LocalStrategy({
+        // override local strategy defaults username and password with email
+        usernameField : 'email',
+        passwordField : 'password',
+        passReqToCallback : true // check if a user is logged in or not
+    },
+    function(req, email, password, done) {
+
+        // asynchronous
+        process.nextTick(function() {
+
+            //  check if the email address is in use.
+            User.findOne({'local.email': email}, function(err, existingUser) {
+
+                // if there are any errors, return the error
+                if (err)
+                    return done(err);
+
+                // check if there's already a user with that email
+                if (existingUser) 
+                    return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
+
+                //  If we're logged in, we're connecting a new local account.
+                if(req.user) {
+                    var user            = req.user;
+                    user.local.email    = email;
+                    user.local.password = user.generateHash(password);
+                    user.save(function(err) {
+                        if (err)
+                            throw err;
+                        return done(null, user);
+                    });
+                } 
+                //  We're not logged in, so we're creating a brand new user.
+                else {
+                    // create the user
+                    var newUser            = new User();
+
+                    newUser.local.email    = email;
+                    newUser.local.password = newUser.generateHash(password);
+
+                    newUser.save(function(err) {
+                        if (err)
+                            throw err;
+
+                        return done(null, newUser);
+                    });
+                }
+
+            });
+        });
+
+    }));
