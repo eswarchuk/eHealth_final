@@ -10,9 +10,9 @@ module.exports = {
 	},
 
 	'twitterAuth' : {
-		'consumerKey' 		: 'MSdvlixzCMhkmaoGNtRk83Ryl',
-		'consumerSecret' 	: 'nctAgm780FhR0tgLOk6A582opXvFjYXkLTuPjHNfKzAMsiUqeI',
-		'callbackURL' 		: 'https://serene-coast-24572.herokuapp.com/auth/twitter/callback'
+		'consumerKey' 		: 'uFipdpZKEbYe0DL9JZ5kLq3qP',
+		'consumerSecret' 	: 'WvmSUhnW6sxQhVh7l8QgsG84n0qFty6Q6i1OQiVUf9X8TX1iZL',
+		'callbackURL' 		: 'https://whispering-garden-50090.herokuapp.com/auth/twitter/callback'
 	},
 
 	'googleAuth' : {
