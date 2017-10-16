@@ -15,21 +15,33 @@ module.exports = function(app, passport) {
 		});
 	});
 
-	app.get('/profilegoogle', isLoggedIn, function(req, res) {
-		res.render('profilegoogle.ejs', {
+	//app.get('/profilegoogle', isLoggedIn, function(req, res) {
+	//	res.render('profilegoogle.ejs', {
+	//		user : req.user
+	//	});
+	//});
+
+	app.get('/patient', isLoggedIn, function(req, res) {
+		res.render('patient.ejs', {
 			user : req.user
 		});
 	});
 
-	app.get('/profiletwit', isLoggedIn, function(req, res) {
-		res.render('profiletwit.ejs', {
-			user : req.user
+	//app.get('/profileface', isLoggedIn, function(req, res) {
+	//	res.render('profileface.ejs', {
+	//		user : req.user
+	//	});
+	//});
+	
+	app.get('/researcher', isLoggedIn, function(req, res) { 
+        res.sendfile(path.resolve('views/researcher.html'), {
+            user : req.user,        
 		});
 	});
 
-	app.get('/profileface', isLoggedIn, function(req, res) {
-		res.render('profileface.ejs', {
-			user : req.user
+	app.get('/doctor', isLoggedIn, function(req, res) { 
+        res.sendfile(path.resolve('views/doc.html'), {
+            user : req.user        
 		});
 	});
 
@@ -50,7 +62,7 @@ module.exports = function(app, passport) {
 		// handle the callback after facebook has authenticated the user
 		app.get('/auth/facebook/callback',
 			passport.authenticate('facebook', {
-				successRedirect : '/profileface',
+				successRedirect : '/doc',
 				failureRedirect : '/'
 			}));
 
@@ -62,7 +74,7 @@ module.exports = function(app, passport) {
 		// handle the callback after twitter has authenticated the user
 		app.get('/auth/twitter/callback',
 			passport.authenticate('twitter', {
-				successRedirect : '/profiletwit',
+				successRedirect : '/patient',
 				failureRedirect : '/'
 			}));
 
@@ -75,7 +87,7 @@ module.exports = function(app, passport) {
 		// the callback after google has authenticated the user
 		app.get('/auth/google/callback',
 			passport.authenticate('google', {
-				successRedirect : '/profilegoogle',
+				successRedirect : '/researcher',
 				failureRedirect : '/'
 			}));
 	
