@@ -18,7 +18,7 @@ module.exports = {
 	'googleAuth' : {
 		'clientID' 		: '656346168053-anoch56oufcd1teej328cf948p9hgh1d.apps.googleusercontent.com',
 		'clientSecret' 	: 'YJZG9WJIqr20ZMC3ZXtEjMIM',
-		'callbackURL' 	: 'https://serene-coast-24572.herokuapp.com/auth/google/callback'
+		'callbackURL' 	: 'https://whispering-garden-50090.herokuapp.com/auth/google/callback'
 	}
 
 };
