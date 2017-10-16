@@ -1,3 +1,4 @@
+var path = require('path');
 // export the fucntions
 module.exports = function(app, passport) {
 
