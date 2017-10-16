@@ -6,7 +6,7 @@ module.exports = {
 	'facebookAuth' : {
 		'clientID' 		: '137506010320031', // your App ID
 		'clientSecret' 	: '37c02420625019bb87f60cbb935685ce', // your App Secret
-		'callbackURL' 	: 'https://serene-coast-24572.herokuapp.com/auth/facebook/callback'
+		'callbackURL' 	: 'https://whispering-garden-50090.herokuapp.com/auth/facebook/callback'
 	},
 
 	'twitterAuth' : {
