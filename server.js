@@ -8,6 +8,8 @@ var http 	= require ('http');
 var mongoose = require('mongoose');  
 var passport = require('passport');
 var flash    = require('connect-flash');
+var d3 		 = require('d3');
+var html = require('html');
 var configDB = require('./config/database.js');
 
 // configuration ===============================================================
