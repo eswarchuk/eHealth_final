@@ -1,19 +1,26 @@
 {
-  "name": "eHealth",
+  "name": "test",
   "main": "server.js",
-  "scripts": {
-    "start": "node server.js"
-  },
-  "dependencies" : {
-    "express" : "~3.4.4", 			
-    "ejs" : "~0.8.5", 				
-    "mongoose" : "~3.8.1", 			
-    "passport" : "~0.1.17", 		
-    "passport-local" : "~0.1.6", 	
-    "passport-facebook" : "~1.0.2", 
-    "passport-twitter" : "~1.0.2", 	
-    "passport-google-oauth" : "~0.1.5",
-    "connect-flash" : "~0.1.1", 	
-    "bcrypt-nodejs" : "latest" 		
+  "dependencies": {
+    "bcrypt-nodejs": "latest",
+    "concat-stream": "latest",
+    "connect-flash": "~0.1.1",
+    "curl": "latest",
+    "d3": "^4.11.0",
+    "ejs": "~0.8.5",
+    "express": "~3.4.4",
+    "eyes": "latest",
+    "fs": "latest",
+    "html": "^1.0.0",
+    "http": "latest",
+    "https": "latest",
+    "mongoose": "~3.8.1",
+    "passport": "~0.1.17",
+    "passport-facebook": "~1.0.2",
+    "passport-google-oauth": "~0.1.5",
+    "passport-local": "~0.1.6",
+    "passport-twitter": "~1.0.2",
+    "spiraljs": "^1.0.0-alpha.5",
+    "xml2js": "latest"
   }
 }
