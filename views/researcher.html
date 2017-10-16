@@ -103,7 +103,7 @@ var tooltip = d3.select("body").append("div")
     .style("opacity", 0);
 
 // load data
-d3.csv("https://gist.githubusercontent.com/eswarchuk/1839fb27f1c41f125bdd092995b0338f/raw/04c8920b0ecd56472610074772f19b1a91b9e0c4/data1.csv", function(error, data) {
+d3.csv("data1.csv", function(error, data) {
 
   // change string (from CSV) into number format
   data.forEach(function(d) {
