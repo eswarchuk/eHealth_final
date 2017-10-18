@@ -22,9 +22,15 @@ module.exports = function(app, passport) {
 	//	});
 	//});
 
-	app.get('/patient', isLoggedIn, function(req, res) {
-		res.render('patient.ejs', {
-			user : req.user
+	//app.get('/patient', isLoggedIn, function(req, res) {
+	//	res.render('patient.ejs', {
+	//		user : req.user
+	//	});
+	//});
+	
+	app.get('/patient', isLoggedIn, function(req, res) { 
+        res.sendfile(path.resolve('views/patient.html'), {
+            user : req.user,        
 		});
 	});
 
