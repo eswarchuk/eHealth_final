@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+	<title>eHealth applicaiton for PD hospital</title>
+	  <meta charset="utf-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+	  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+	  
+	<style>
+		body 		{ padding-top:80px; word-wrap:break-word; }
+	</style>
+</head>
+<body>
+<div class="container">
+
+	<div class="page-header text-center">
+		<h1>Welcome Patient</h1>
+		<a href="/logout" class="btn btn-default btn-sm">Logout</a>
+	</div>
+<div class="row">	
+
+<div id="barchartperday"></div>
+<div id="barchartperweek"></div>
+<div id="barchartpermonth"></div>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script type="text/javascript">
+// Load google charts
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+// Draw the chart and set the chart values
+function drawChart() {
+  var dataperday = google.visualization.arrayToDataTable([
+  ['Excercise session', 'Hours per Day'],
+  ['Day1', 8],
+  ['Day2', 2],
+  ['Day3', 4],
+  ['Day4', 2],
+  ['Day5', 8]
+]);
+  var dataperweek = google.visualization.arrayToDataTable([
+  ['Excercise session', 'Hours per Week'],
+  ['Week1', 12],
+  ['Week2', 12],
+  ['Week3', 14],
+  ['Week4', 12],
+  ['Week5', 18]
+]);
+  var datapermonth = google.visualization.arrayToDataTable([
+  ['Excercise session', 'Hours per Month'],
+  ['Month1', 38],
+  ['Month2', 32],
+  ['Month3', 34],
+  ['Month4', 32],
+  ['Month5', 38]
+]);
+
+  // Optional; add a title and set the width and height of the chart
+  var optionsperday = {'title':'Excercise sessions per day', 'width':800, 'height':400}
+  var optionsperweek = {'title':'Excercise sessions per week', 'width':800, 'height':400}
+  var optionspermonth = {'title':'Excercise sessions per month', 'width':800, 'height':400}
+  // Display the chart inside the <div> element with id="piechart"
+  var chartperday = new google.visualization.BarChart(document.getElementById("barchartperday"));
+  var chartperweek = new google.visualization.BarChart(document.getElementById("barchartperweek"));
+  var chartpermonth = new google.visualization.BarChart(document.getElementById("barchartpermonth"));
+  chartperday.draw(dataperday, optionsperday);
+  chartperweek.draw(dataperweek, optionsperweek);
+  chartpermonth.draw(datapermonth, optionspermonth);
+  
+}
+</script>
+
+</div>
+
+		<iframe width="560" height="315" src="https://www.youtube.com/embed/Ez2GeaMa4c8" frameborder="0" allowfullscreen></iframe>
+		<iframe width="560" height="315" src="https://www.youtube.com/embed/7CFLm1SL5EU" frameborder="0" allowfullscreen></iframe>
+		<iframe width="560" height="315" src="https://www.youtube.com/embed/B1TIdGG4mE0" frameborder="0" allowfullscreen></iframe>
+		<iframe width="560" height="315" src="https://www.youtube.com/embed/wkDiOCIX_xA" frameborder="0" allowfullscreen></iframe>
+		
+
+		<div class="text-center">
+			<p>Assignment for 4ME302</p>
+			<p>Student: Eswar Chukaluri</p>
+		</div>
+
+
+</div>
+</body>
+</html>
