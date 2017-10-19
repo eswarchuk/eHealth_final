@@ -1,35 +1,42 @@
 // server.js
 
-// get all the packages
+// set up ======================================================================
+// get all the tools we need
 var express  = require('express');
 var app      = express();
 var port     = process.env.PORT || 8080;
-var http 	= require ('http'); 
-var mongoose = require('mongoose');  
+var mongoose = require('mongoose');
 var passport = require('passport');
 var flash    = require('connect-flash');
 var d3 		 = require('d3');
+var plotly 		 = require('plotly')("eswarchuk", "••••••••••");
 var html = require('html');
+
 var configDB = require('./config/database.js');
 
+
 // configuration ===============================================================
-// connect to our database
-mongoose.connect(configDB.url);
-		 //{ useMongoClient: true, promiseLibrary: global.Promise });
+mongoose.connect(configDB.url); // connect to our database
+
+// require('./views/spiralVis.js');
+var datafile = require('./app/xmltojson.js');
+var userData = require('./users.json');
 
 
 require('./config/passport')(passport); // pass passport for configuration
 
 app.configure(function() {
 
-	// set up express application
+	// set up our express application
 	app.use(express.logger('dev')); // log every request to the console
 	app.use(express.cookieParser()); // read cookies (needed for auth)
 	app.use(express.bodyParser()); // get information from html forms
-	app.use(express.static('public'));// to be able to read files for d3
+	app.use(express.static('public'));
+
 	app.set('view engine', 'ejs'); // set up ejs for templating
 
 	// required for passport
+
 	app.use(express.session({ secret: 'hopedieslast' })); // session secret
 	app.use(passport.initialize());
 	app.use(passport.session()); // persistent login sessions
@@ -38,8 +45,10 @@ app.configure(function() {
 });
 
 // routes ======================================================================
-require('./app/routes.js')(app, passport); // load our routes and import app and passport from routes.js
+require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
 // launch ======================================================================
+
 app.listen(port);
 console.log('Ding Dong ' + port);
+console.log(userData.User.userID[3].Lat, userData.User.userID[3].Long);  
