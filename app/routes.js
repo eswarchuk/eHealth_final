@@ -1,7 +1,7 @@
-var PracticeModel = require('./PracticeModel.js');
+//var PracticeModel = require('./PracticeModel.js');
 //var datafile = require('./xmltojson.js');
-var userData = require('../users.json');
-var d3 = require('d3');
+//var userData = require('../users.json');
+//var d3 = require('d3');
 
 var path = require('path');
 
