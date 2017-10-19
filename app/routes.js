@@ -83,8 +83,7 @@ module.exports = function(app, passport) {
 
 	app.get('/researcher', isLoggedIn, function(req, res) { 
         res.sendfile(path.resolve('views/researcher.html'), {
-            user : req.user,  
-            data1 : userData      
+            user : req.user       
 		});
 	});
 
