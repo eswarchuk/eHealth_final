@@ -21,45 +21,25 @@
 <div class="container">
 
   <div class="page-header text-center">
-    <h1>Welcome Smartass</h1>
+    <h1>Welcome Doc</h1>
     <a href="/logout" class="btn btn-default btn-sm">Logout</a>
   </div>
 <div class="row"> 
  <!-- for Data 1 -->
 <p> Patient 1, Data1</p>
-
 <div id="data1XY" style="width:600px;height:250px;"></div>
 <div id="data1Xt" style="width:600px;height:250px;"></div>
 <div id="data1Yt" style="width:600px;height:250px;"></div>
-<!-- Map for Data 1 -->
-<div id="Map_Data1" style="width:50%;height:400px;"></div>
 <!-- for Data 3 -->
 <p> Patient 1, Data3</p>
 <div id="data3XY" style="width:600px;height:250px;"></div>
 <div id="data3Xt" style="width:600px;height:250px;"></div>
 <div id="data3Yt" style="width:600px;height:250px;"></div>
-<!-- Map for Data 3 -->
-
 <!-- for Data 5 -->
 <p> Patient 1, Data5</p>
 <div id="data5XY" style="width:600px;height:250px;"></div>
 <div id="data5Xt" style="width:600px;height:250px;"></div>
 <div id="data5Yt" style="width:600px;height:250px;"></div>
-<!-- Map for Data 5 -->
-
-
-
-
-
-
-
-
-
-
-
-</div>
-</div>
-</body>
 
 <script type="text/javascript">
   // for Data 1
@@ -318,21 +298,13 @@ Plotly.d3.csv('data5.csv', function(rows){
 }); 
 </script>
 
- <!-- Map for Data1 -->
-   
 
-      <script>
-      function myMap() {
-      var data1= {
-          center:new google.maps.LatLng(51.508742,-0.120850),
-          zoom:5,
-      };
-      var map=new google.maps.Map(document.getElementById("Map_Data1"),data1);
-      }
-      </script>
-
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBs8-c-gPASX0orxWrhwhToPG-Y9b8-6sU&callback=myMap"></script>
+    <div class="text-center">
+      <p>Assignment for 4ME302</p>
+      <p>Student: Eswar Chukaluri</p>
+    </div>
 
 
-
+</div>
+</body>
 </html>
