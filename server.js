@@ -8,8 +8,8 @@ var port     = process.env.PORT || 8080;
 var mongoose = require('mongoose');
 var passport = require('passport');
 var flash    = require('connect-flash');
-var d3 		 = require('d3');
-var plotly 		 = require('plotly')("eswarchuk", "••••••••••");
+//var d3 		 = require('d3');
+//var plotly 		 = require('plotly')("eswarchuk", "••••••••••");
 var html = require('html');
 
 var configDB = require('./config/database.js');
