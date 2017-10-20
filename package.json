@@ -21,7 +21,6 @@
     "passport-local": "~0.1.6",
     "passport-twitter": "~1.0.2",
     "spiraljs": "^1.0.0-alpha.5",
-    "xml2js": "latest",
-    "jquery": "latest"
+    "xml2js": "latest"
   }
 }
