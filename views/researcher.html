@@ -2,7 +2,7 @@
 <html>
 <head>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 
   <title>eHealth applicaiton for PD hospital</title>
     <meta charset="utf-8">
@@ -311,9 +311,28 @@ Plotly.d3.csv('data5.csv', function(rows){
 </script>
 
 <script type="text/javascript">
+        var lat = "";
+        var long = "";
+        $(document).ready(function () {
+          $.ajax({
+            type: "GET",
+            url: "http://vhost11.lnu.se:20090/final/getData.php?table=User&id=3",
+            cache: false,
+            dataType: "xml",
+            success: function(xml) {
+              $(xml).find('userID').each(function(){
+                lat = $(this).find("Lat").text()
+                         //alert(lat);
+                long = $(this).find("Long").text()
+                initialize();
+              });
+            }
+          });
+        });
+        
         function initialize() {
         var map = new google.maps.Map(document.getElementById('map'), {
-            center: new google.maps.LatLng(59.6567,16.6709),
+            center: new google.maps.LatLng(lat,long),
             zoom: 4
         });
         var marker = new google.maps.Marker({
