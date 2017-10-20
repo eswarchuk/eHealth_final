@@ -312,6 +312,7 @@ Plotly.d3.csv('data5.csv', function(rows){
 </script>
 
 <script type="text/javascript">
+        var user = "";
         var lat = "";
         var long = "";
         var myurl = "http://vhost11.lnu.se:20090/final/getData.php?table=User&id=3";
@@ -324,6 +325,7 @@ Plotly.d3.csv('data5.csv', function(rows){
             dataType: "xml",
             success: function(xml) {
               $(xml).find('userID').each(function(){
+                user = $(this).find("username").text()
                 lat = $(this).find("Lat").text()
                          //alert(lat);
                 long = $(this).find("Long").text()
@@ -343,7 +345,7 @@ Plotly.d3.csv('data5.csv', function(rows){
             map: map
         });
         var infowindow = new google.maps.InfoWindow({
-        content: "PatientID=3"
+        content: user
         });
         infowindow.open(map,marker);
 
