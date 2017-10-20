@@ -2,7 +2,7 @@
 <html>
 <head>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-  
+  <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 
   <title>eHealth applicaiton for PD hospital</title>
     <meta charset="utf-8">
@@ -24,39 +24,30 @@
   <div class="page-header text-center">
     <h1>Welcome Smartass</h1>
     <a href="/logout" class="btn btn-default btn-sm">Logout</a>
-  </div>
-<div class="row"> 
- <!-- for Data 1 -->
-<p> Patient 1, Data1</p>
+  </div><br />
+<div class="row" align="center"> 
+  <!-- Map-->
+  <h3>Click on the marker to see the patient data</h3>
+<div id="map" style="width:100%;height:400px;">Click on the marker to see the patient data</div><br />
 
-<div id="data1XY" style="width:600px;height:250px;"></div>
-<div id="data1Xt" style="width:600px;height:250px;"></div>
-<div id="data1Yt" style="width:600px;height:250px;"></div>
-<!-- Map for Data 1 -->
-<div id="Map_Data1" style="width:50%;height:400px;"></div>
+ <!-- for Data 1 -->
+
+<div id="data1XY" align="left" style="width:600px;height:250px;display: none;">PatientID=3, Data1, X vs Y</div><br />
+<div id="data1Xt" align="left" style="width:600px;height:250px;display: none;">PatientID=3, Data1, time vs X</div><br />
+<div id="data1Yt" align="left" style="width:600px;height:250px;display: none;">PatientID=3, Data1, time vs Y</div><br />
 <!-- for Data 3 -->
-<p> Patient 1, Data3</p>
-<div id="data3XY" style="width:600px;height:250px;"></div>
-<div id="data3Xt" style="width:600px;height:250px;"></div>
-<div id="data3Yt" style="width:600px;height:250px;"></div>
+
+<div id="data3XY" align="left" style="width:600px;height:250px;display: none;">PatientID=3, Data3, X vs Y</div><br />
+<div id="data3Xt" align="left" style="width:600px;height:250px;display: none;">PatientID=3, Data3, time vs X</div><br />
+<div id="data3Yt" align="left" style="width:600px;height:250px;display: none;">PatientID=3, Data3, time vs Y</div><br />
 <!-- Map for Data 3 -->
 
 <!-- for Data 5 -->
-<p> Patient 1, Data5</p>
-<div id="data5XY" style="width:600px;height:250px;"></div>
-<div id="data5Xt" style="width:600px;height:250px;"></div>
-<div id="data5Yt" style="width:600px;height:250px;"></div>
+
+<div id="data5XY" align="left" style="width:600px;height:250px;display: none;">PatientID=3, Data5, X vs Y</div><br />
+<div id="data5Xt" align="left" style="width:600px;height:250px;display: none;">PatientID=3, Data5, time vs X</div><br />
+<div id="data5Yt" align="left" style="width:600px;height:250px;display: none;">PatientID=3, Data5, time vs Y</div><br />
 <!-- Map for Data 5 -->
-
-
-
-
-
-
-
-
-
-
 
 </div>
 </div>
@@ -319,20 +310,90 @@ Plotly.d3.csv('data5.csv', function(rows){
 }); 
 </script>
 
- <!-- Map for Data1 -->
-   
+<script type="text/javascript">
+        function initialize() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: new google.maps.LatLng(59.6567,16.6709),
+            zoom: 4
+        });
+        var marker = new google.maps.Marker({
+            position: map.getCenter(),
+            map: map
+        });
+        var infowindow = new google.maps.InfoWindow({
+        content: "PatientID=3"
+        });
+        infowindow.open(map,marker);
 
-      <script>
-      function myMap() {
-      var data1= {
-          center:new google.maps.LatLng(51.508742,-0.120850),
-          zoom:5,
-      };
-      var map=new google.maps.Map(document.getElementById("Map_Data1"),data1);
-      }
-      </script>
+        google.maps.event.addListener(marker, 'click', function (marker, i) {
+            if ($('#data1XY').css('display') == 'block') {
+                $('#data1XY').css('display', 'none');
+            } else {
+                $('#data1XY').css('display', 'block');
+            }
+            if ($('#data1Xt').css('display') == 'block') {
+                $('#data1Xt').css('display', 'none');
+            } else {
+                $('#data1Xt').css('display', 'block');
+            }
+            if ($('#data1Yt').css('display') == 'block') {
+                $('#data1Yt').css('display', 'none');
+            } else {
+                $('#data1Yt').css('display', 'block');
+            }
+            if ($('#data3XY').css('display') == 'block') {
+                $('#data3XY').css('display', 'none');
+            } else {
+                $('#data3XY').css('display', 'block');
+            }
+            if ($('#data3Xt').css('display') == 'block') {
+                $('#data3Xt').css('display', 'none');
+            } else {
+                $('#data3Xt').css('display', 'block');
+            }
+            if ($('#data3Yt').css('display') == 'block') {
+                $('#data3Yt').css('display', 'none');
+            } else {
+                $('#data3Yt').css('display', 'block');
+            }
+            if ($('#data5XY').css('display') == 'block') {
+                $('#data5XY').css('display', 'none');
+            } else {
+                $('#data5XY').css('display', 'block');
+            }
+            if ($('#data5Xt').css('display') == 'block') {
+                $('#data5Xt').css('display', 'none');
+            } else {
+                $('#data5Xt').css('display', 'block');
+            }
+            if ($('#data5Yt').css('display') == 'block') {
+                $('#data5Yt').css('display', 'none');
+            } else {
+                $('#data5Yt').css('display', 'block');
+            }
+        });
+    }
+    //google.maps.event.addDomListener(window, 'load', initialize);
+      
+</script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBs8-c-gPASX0orxWrhwhToPG-Y9b8-6sU&callback=initialize"></script>
 
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBs8-c-gPASX0orxWrhwhToPG-Y9b8-6sU&callback=myMap"></script>
+
+<!-- <script>
+        function myMap() {
+        var myCenter = new google.maps.LatLng(59.6567,16.6709);
+        var mapCanvas = document.getElementById("map");
+        var mapOptions = {center: myCenter, zoom: 5};
+        var map = new google.maps.Map(mapCanvas, mapOptions);
+        var marker = new google.maps.Marker({position:myCenter});
+        marker.setMap(map);
+        var infowindow = new google.maps.InfoWindow({
+        content: "PatientID=3"
+        });
+        infowindow.open(map,marker);
+        }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBs8-c-gPASX0orxWrhwhToPG-Y9b8-6sU&callback=myMap"></script> -->
 
 
 
