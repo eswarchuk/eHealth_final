@@ -26,10 +26,23 @@
     <h1>Welcome Smartass</h1>
     <a href="/logout" class="btn btn-default btn-sm">Logout</a>
   </div><br />
-<div class="row" align="center"> 
+  <div align="center"> 
   <!-- Map-->
   <h3>Click on the marker to see the patient data</h3>
-<div id="map" style="width:100%;height:400px;">Click on the marker to see the patient data</div><br />
+<div id="map" style="width:100%;height:400px;"></div><br />
+
+<!-- Buttons-->
+  
+  <div id="data1" style="display: none;">
+  <input type="button" name="answer" value="Patient1, data1" onclick="showdata1()" />
+  </div>
+  <div id="data3" style="display: none;">
+  <input type="button" name="answer" value="Patient1, data3" onclick="showdata3()" />
+  </div>
+  <div id="data5" style="display: none;">
+  <input type="button" name="answer" value="Patient1, data5" onclick="showdata5()" />
+  </div>
+
 
  <!-- for Data 1 -->
 
@@ -48,13 +61,56 @@
 <div id="data5XY" align="left" style="width:600px;height:250px;display: none;">Patient1, Data5, X vs Y</div><br />
 <div id="data5Xt" align="left" style="width:600px;height:250px;display: none;">Patient1, Data5, time vs X</div><br />
 <div id="data5Yt" align="left" style="width:600px;height:250px;display: none;">Patient1, Data5, time vs Y</div><br />
-<!-- Map for Data 5 -->
+
 
 </div>
 </div>
 </body>
 
 <script type="text/javascript">
+  function showdata1() {
+    document.getElementById('data1XY').style.display = "block";
+    document.getElementById('data1Xt').style.display = "block";
+    document.getElementById('data1Yt').style.display = "block";
+
+    document.getElementById('data3XY').style.display = "none";
+    document.getElementById('data3Xt').style.display = "none";
+    document.getElementById('data3Yt').style.display = "none";
+
+    document.getElementById('data5XY').style.display = "none";
+    document.getElementById('data5Xt').style.display = "none";
+    document.getElementById('data5Yt').style.display = "none";
+    }
+
+  function showdata3() {
+    document.getElementById('data1XY').style.display = "none";
+    document.getElementById('data1Xt').style.display = "none";
+    document.getElementById('data1Yt').style.display = "none";
+
+    document.getElementById('data3XY').style.display = "block";
+    document.getElementById('data3Xt').style.display = "block";
+    document.getElementById('data3Yt').style.display = "block";
+
+    document.getElementById('data5XY').style.display = "none";
+    document.getElementById('data5Xt').style.display = "none";
+    document.getElementById('data5Yt').style.display = "none";
+    }
+
+  function showdata5() {
+    document.getElementById('data3XY').style.display = "none";
+    document.getElementById('data3Xt').style.display = "none";
+    document.getElementById('data3Yt').style.display = "none";
+
+    document.getElementById('data5XY').style.display = "none";
+    document.getElementById('data5Xt').style.display = "none";
+    document.getElementById('data5Yt').style.display = "none";
+
+    document.getElementById('data5XY').style.display = "block";
+    document.getElementById('data5Xt').style.display = "block";
+    document.getElementById('data5Yt').style.display = "block";
+    }
+
+
   // for Data 1
   Plotly.d3.csv('data1.csv', function(rows){
     var traceXY = {
@@ -350,50 +406,20 @@ Plotly.d3.csv('data5.csv', function(rows){
         infowindow.open(map,marker);
 
         google.maps.event.addListener(marker, 'click', function (marker, i) {
-            if ($('#data1XY').css('display') == 'block') {
-                $('#data1XY').css('display', 'none');
+            if ($('#data1').css('display') == 'block') {
+                $('#data1').css('display', 'none');
             } else {
-                $('#data1XY').css('display', 'block');
+                $('#data1').css('display', 'block');
             }
-            if ($('#data1Xt').css('display') == 'block') {
-                $('#data1Xt').css('display', 'none');
+            if ($('#data3').css('display') == 'block') {
+                $('#data3').css('display', 'none');
             } else {
-                $('#data1Xt').css('display', 'block');
+                $('#data3').css('display', 'block');
             }
-            if ($('#data1Yt').css('display') == 'block') {
-                $('#data1Yt').css('display', 'none');
+            if ($('#data5').css('display') == 'block') {
+                $('#data5').css('display', 'none');
             } else {
-                $('#data1Yt').css('display', 'block');
-            }
-            if ($('#data3XY').css('display') == 'block') {
-                $('#data3XY').css('display', 'none');
-            } else {
-                $('#data3XY').css('display', 'block');
-            }
-            if ($('#data3Xt').css('display') == 'block') {
-                $('#data3Xt').css('display', 'none');
-            } else {
-                $('#data3Xt').css('display', 'block');
-            }
-            if ($('#data3Yt').css('display') == 'block') {
-                $('#data3Yt').css('display', 'none');
-            } else {
-                $('#data3Yt').css('display', 'block');
-            }
-            if ($('#data5XY').css('display') == 'block') {
-                $('#data5XY').css('display', 'none');
-            } else {
-                $('#data5XY').css('display', 'block');
-            }
-            if ($('#data5Xt').css('display') == 'block') {
-                $('#data5Xt').css('display', 'none');
-            } else {
-                $('#data5Xt').css('display', 'block');
-            }
-            if ($('#data5Yt').css('display') == 'block') {
-                $('#data5Yt').css('display', 'none');
-            } else {
-                $('#data5Yt').css('display', 'block');
+                $('#data5').css('display', 'block');
             }
         });
     }
